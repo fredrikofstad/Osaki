@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class OpenDoor : Interact
 {
     public string destination;
+    public Vector3 newLocation;
+    public Vector3 newRotation;
     private Animator anim;
 
     protected override void Setup()
@@ -39,6 +41,7 @@ public class OpenDoor : Interact
 
     private void NewScene()
     {
+        GameManager.instance.GiveLocation(newLocation, newRotation);
         SceneManager.LoadScene(sceneName: destination);
     }
     

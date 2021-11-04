@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class Warp : MonoBehaviour
 {
     public string destination;
+    public Vector3 newLocation;
+    public Vector3 newRotation;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +16,7 @@ public class Warp : MonoBehaviour
     }
     private void NewScene()
     {
+        GameManager.instance.GiveLocation(newLocation, newRotation);
         SceneManager.LoadScene(sceneName: destination);
     }
 }

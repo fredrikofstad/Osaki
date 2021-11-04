@@ -7,7 +7,7 @@ public class Player : AdvancedWalkerController
 {
     //states
     private bool paused; //not the same as regular pause, used in cutscenes and talking
-    private bool isSitting; //if need be in future make state enum?
+    public bool isSitting; //if need be in future make state enum?
 
     //for switching camera
     private Quaternion lastCameraFacing;

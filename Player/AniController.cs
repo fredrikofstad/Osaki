@@ -31,6 +31,12 @@ public class AniController : MonoBehaviour
         }
     }
 
-    public void OnPause() => GetComponentInChildren<Animator>().SetTrigger("isPaused");
-    public void OnResume() => GetComponentInChildren<Animator>().SetTrigger("isResumed");
+    public void OnPause()
+    {
+        if(!controller.isSitting) GetComponentInChildren<Animator>().SetTrigger("isPaused");
+    }
+    public void OnResume()
+    {
+        if (!controller.isSitting) GetComponentInChildren<Animator>().SetTrigger("isResumed");
+    }
 }

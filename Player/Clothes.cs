@@ -15,7 +15,7 @@ public class Clothes : MonoBehaviour
         GameManager.instance.pause.Paused += OnPause;
         GameManager.instance.pause.Resumed += OnResume;
         aniController = GetComponent<AniController>();
-        ChangeClothes(1);
+        ChangeClothes(2);
     }
 
     private void Update()

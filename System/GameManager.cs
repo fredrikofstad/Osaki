@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     //bools
     public bool inCutscene;
+    //between scenes
+    Vector3 playerLocation;
+    Vector3 playerRotation;
 
     private void OnSceneLoaded(Scene s, LoadSceneMode mode)
     {
@@ -33,6 +36,15 @@ public class GameManager : MonoBehaviour
         playerAnim = player.GetComponentInChildren<Animator>();
         mainCamera = Camera.main;
         playerCam = GameObject.FindWithTag("PlayerCam").GetComponent<CinemachineVirtualCamera>();
+        if(playerLocation != Vector3.zero) player.transform.position = playerLocation;
+        if (playerRotation != Vector3.zero) player.transform.rotation = Quaternion.Euler(playerRotation);
+        playerLocation = Vector3.zero;
+        playerRotation = Vector3.zero;
+    }
+    public void GiveLocation(Vector3 newLocation, Vector3 newRotation)
+    {
+        playerLocation = newLocation;
+        playerRotation = newRotation;
     }
 
 
