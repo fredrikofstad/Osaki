@@ -6,7 +6,9 @@ public class Clothes : MonoBehaviour
     [SerializeField] private GameObject phone;
     [SerializeField] private AniController aniController;
 
+
     public GameObject[] clothes;
+    public int clothesNumber = 0;
 
     private bool music; //might not be needed, make gamemanager var?
 
@@ -15,7 +17,7 @@ public class Clothes : MonoBehaviour
         GameManager.instance.pause.Paused += OnPause;
         GameManager.instance.pause.Resumed += OnResume;
         aniController = GetComponent<AniController>();
-        ChangeClothes(2);
+        ChangeClothes(clothesNumber);
     }
 
     private void Update()

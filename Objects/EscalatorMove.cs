@@ -8,7 +8,7 @@ public class EscalatorMove : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
 
-	public float force = 10f;
+	public float force = 13f;
 
     void OnTriggerStay (Collider other)
     {

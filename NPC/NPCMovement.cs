@@ -27,7 +27,8 @@ public class NPCMovement : MonoBehaviour
         { 
             if(transform.position != destination)
             {
-                anim.SetBool("isStanding", false);
+                if (anim != null) 
+                    anim.SetBool("isStanding", false);
                 Vector3 destinationDirection = destination - transform.position;
                 destinationDirection.y = 0;
                 float destinationDistance = destinationDirection.magnitude;
