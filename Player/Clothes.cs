@@ -18,6 +18,26 @@ public class Clothes : MonoBehaviour
         GameManager.instance.pause.Resumed += OnResume;
         aniController = GetComponent<AniController>();
         ChangeClothes(clothesNumber);
+        if (GameManager.instance.music)
+        {
+            headphones.SetActive(true);
+        }
+        else
+        {
+            headphones.SetActive(false);
+        }
+    }
+
+    public void SetHeadphones(bool music)
+    {
+        if (music)
+        {
+            headphones.SetActive(true);
+        }
+        else
+        {
+            headphones.SetActive(false);
+        }
     }
 
     private void Update()

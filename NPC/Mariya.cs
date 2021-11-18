@@ -1,15 +1,17 @@
-using System.Collections;
 using UnityEngine;
 
-public class Akane : Cutscene
+public class Mariya : Cutscene
 {
     private RPGTalk rpgtalk;
-    private int choice = 0;
+    private int choice = 5;
+    private Quaternion originalRot;
     protected override void Setup()
     {
         rpgtalk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
         rpgtalk.OnMadeChoice += OnMadeChoice;
         rpgtalk.OnEndTalk += OnEndTalk;
+        originalRot = transform.rotation;
+        GameManager.instance.PauseMusic();
     }
 
     private void OnMadeChoice(string questionID, int choiceID)
@@ -20,25 +22,20 @@ public class Akane : Cutscene
     {
         if(choice == 0)
         {
+            transform.rotation = originalRot;
             PlayCutscene();
+            choice = 5;
         }
     }
     protected override void OnCutsceneEnd()
     {
         //if statement for progression
-        StartCoroutine(TaskComplete());
+        Invoke("TaskComplete", 1f);
     }
 
-    IEnumerator TaskComplete()
+    private void TaskComplete()
     {
-
-        yield return new WaitForSeconds(1f);
-
-        GameManager.instance.DisplayText("Get some exercise: Task Complete!", 6f);
-
-        yield return new WaitForSeconds(6f);
-
-        GameManager.instance.DisplayText("Meet my Friends: 2/7", 6f);
+        GameManager.instance.DisplayText("Meet my Friends: 1/7", 6f);
     }
 
     private void OnDisable()

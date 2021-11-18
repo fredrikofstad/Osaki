@@ -8,6 +8,7 @@ public class Player : AdvancedWalkerController
     //states
     private bool paused; //not the same as regular pause, used in cutscenes and talking
     public bool isSitting; //if need be in future make state enum?
+    public bool grounded;
 
     //for switching camera
     private Quaternion lastCameraFacing;
@@ -36,13 +37,12 @@ public class Player : AdvancedWalkerController
         {
             movementSpeed = runSpeed;
         }
+        grounded = IsGrounded();
 
     }
 
     protected override Vector3 CalculateMovementDirection()
     {
-        if(GameManager.instance.inCutscene)
-            return Vector3.zero;
         if (paused)
             return Vector3.zero;
         if (characterInput == null)
@@ -86,8 +86,6 @@ public class Player : AdvancedWalkerController
     }
     protected override bool IsJumpKeyPressed()
     {
-        if(GameManager.instance.inCutscene)
-            return false;
         if (paused)
             return false;
         return base.IsJumpKeyPressed();
@@ -150,6 +148,19 @@ public class Player : AdvancedWalkerController
             UnPause();
             GetComponentInChildren<Animator>().SetTrigger("doneDancing");
         }
+    }
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+    public void Enable()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Headphones(bool music = false)
+    {
+        GetComponent<Clothes>().SetHeadphones(music);
     }
 
 }

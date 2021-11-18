@@ -1,11 +1,12 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartOfGame : MonoBehaviour
+public class StartOfGame : Cutscene
 {
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("GUI", LoadSceneMode.Additive); //remove this after making main menu
+        Invoke("PlayCutscene", 0.1f);
     }
+
+
 }

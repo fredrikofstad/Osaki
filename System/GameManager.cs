@@ -17,14 +17,18 @@ public class GameManager : MonoBehaviour
     }
     //references
     public PauseManager pause;
+    public TextManager textManager;
     public GameObject player;
     public Player playerScript;
     public Animator playerAnim;
     public Camera mainCamera;
     public CinemachineVirtualCamera playerCam;
+    public bl_AudioPlayer audioPlayer;
 
     //bools
+    public bool gameStarted;
     public bool inCutscene;
+    public bool music;
     //between scenes
     Vector3 playerLocation;
     Vector3 playerRotation;
@@ -46,6 +50,17 @@ public class GameManager : MonoBehaviour
         playerLocation = newLocation;
         playerRotation = newRotation;
     }
+
+    public void DisplayText(string msg, float duration)
+    {
+        textManager.Show(msg, duration);
+    }
+    public void PauseMusic()
+    {
+        audioPlayer.Pause();
+    }
+    //playerprefs bad
+    //consider dedicated class
 
 
 

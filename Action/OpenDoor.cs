@@ -15,24 +15,28 @@ public class OpenDoor : Interact
 
 
 
-    private void OnTriggerStay()
+    private void OnTriggerStay(Collider other)
     {
-        if (canPerform)
+        if (other.gameObject.tag == "Player")
         {
-            ShowText();
+            if (canPerform)
+            {
+                ShowText();
+            }
+            else
+            {
+                ShowText(false);
+            }
+            if (Input.GetKeyDown(KeyCode.E) && canPerform) //ugly change later lol
+            {
+                character.OpenDoor(this.transform.position, this.transform.rotation);
+                canPerform = false;
+                ShowText(false);
+                anim.SetTrigger("onOpen");
+                Invoke("NewScene", 3f);
+            }
         }
-        else
-        {
-            ShowText(false);
-        }
-        if (Input.GetKeyDown(KeyCode.E) && canPerform) //ugly change later lol
-        {
-            character.OpenDoor(this.transform.position, this.transform.rotation);
-            canPerform = false;
-            ShowText(false);
-            anim.SetTrigger("onOpen");
-            Invoke("NewScene", 3f);
-        }
+        
     }
     private void OnTriggerExit(Collider other)
     {
