@@ -33,10 +33,18 @@ public class AniController : MonoBehaviour
 
     public void OnPause()
     {
-        if(!controller.isSitting) GetComponentInChildren<Animator>().SetTrigger("isPaused");
+        if (!controller.IsGrounded())
+        {
+            animator.speed = 0;
+        }   
+        else if(!controller.isSitting)
+        {
+            animator.SetTrigger("isPaused");
+        }        
     }
     public void OnResume()
     {
-        if (!controller.isSitting) GetComponentInChildren<Animator>().SetTrigger("isResumed");
+        if (!controller.isSitting) animator.SetTrigger("isResumed");
+        animator.speed = 1;
     }
 }

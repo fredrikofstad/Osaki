@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
     public bl_AudioPlayer audioPlayer;
 
     //bools
-    public bool gameStarted;
     public bool inCutscene;
     public bool music;
+    //save
+    public SaveObject so;
     //between scenes
     Vector3 playerLocation;
     Vector3 playerRotation;
@@ -59,9 +60,6 @@ public class GameManager : MonoBehaviour
     {
         audioPlayer.Pause();
     }
-    //playerprefs bad
-    //consider dedicated class
-
 
 
 }

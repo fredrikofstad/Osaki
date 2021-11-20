@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        if (GameManager.instance.so.introCutscene)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("Room");
+        Disable();
     }
     public void LoadGame()
     {
-        SceneManager.LoadScene("Osaki");
+        if (SaveManager.SaveFileExists())
+        {
+            GameManager.instance.so = SaveManager.Load();
+            GameManager.instance.inCutscene = false;
+            SceneManager.LoadScene("Room");
+            Disable();
+        }        
     }
     public void QuitGame()
     {
@@ -21,6 +33,6 @@ public class MainMenu : MonoBehaviour
     }
     private void Disable()
     {
-        //disable main menu
+        gameObject.SetActive(false);
     }
 }
