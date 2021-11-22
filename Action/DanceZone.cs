@@ -1,15 +1,10 @@
 using UnityEngine;
 
-public class DanceZone : MonoBehaviour
+public class DanceZone : Interact
 {
-    private Player character;
-    private Transform textMeshTransform;
-    private MeshRenderer textRender;
     private bool isDancing = false;
-    private bool canPerform = true;
-    private bool showText = true;
- 
-    private void Start()
+
+    protected override void Setup()
     {
         textMeshTransform = GetComponentInChildren<RectTransform>();
         textRender = GetComponentInChildren<MeshRenderer>();
@@ -28,7 +23,7 @@ public class DanceZone : MonoBehaviour
         {
             ShowText(false);
         }
-        if (Input.GetKeyDown(KeyCode.E) && canPerform) //ugly change later lol
+        if (IsInteracting())
         {
             if (!isDancing)
             {
@@ -46,19 +41,6 @@ public class DanceZone : MonoBehaviour
             }
         }
     }
-    private void ShowText(bool show = true)
-    {
-        if (show)
-        {
-            textRender.enabled = true;
-            showText = true;
-        }
-        else
-        {
-            textRender.enabled = false;
-            showText = false;
-        }
-    }
     private void OnTriggerExit()
     {
         ShowText(false);
@@ -66,10 +48,5 @@ public class DanceZone : MonoBehaviour
     private void Delay()
     {
         canPerform = true;
-    }
-    void Update()
-    {
-        if (showText)
-            textMeshTransform.rotation = Camera.allCameras[0].transform.rotation;
     }
 }

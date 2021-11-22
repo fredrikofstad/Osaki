@@ -11,7 +11,7 @@ public static class InputManager
         }
         else
         {
-            return Input.GetKey("Interact");
+            return Input.GetButtonUp("Interact");
         }
 	}
 

@@ -7,15 +7,9 @@ public class NPCSpawner : MonoBehaviour
     public GameObject[] npcPrefab;
     public int spawnAmount;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Spawn());
-    }
-    private void Update()
-    {
-        
     }
 
     IEnumerator Spawn()

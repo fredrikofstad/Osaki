@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera playerCam;
     public bl_AudioPlayer audioPlayer;
     public Joystick joystick;
+    public GameObject touchGui;
 
     //bools
     public bool touchControls;
@@ -35,6 +36,11 @@ public class GameManager : MonoBehaviour
     //between scenes
     Vector3 playerLocation;
     Vector3 playerRotation;
+
+    private void Start()
+    {
+        touchGui.SetActive(touchControls);
+    }
 
     private void OnSceneLoaded(Scene s, LoadSceneMode mode)
     {
