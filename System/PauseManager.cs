@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PauseManager : MonoBehaviour
 {
@@ -31,37 +32,50 @@ public class PauseManager : MonoBehaviour
         phoneAni = phone.GetComponent<iPhoneAni>();
         
     }
-    void Update()
+
+    private bool PauseKey()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.instance.inCutscene)
+        if (!GameManager.instance.touchControls) //uff
         {
-            if (pauseReady)
-            {
-                pauseReady = false;
-                isPaused = !isPaused;
-                PauseGame();
-            }
+            return Input.GetKeyDown(KeyCode.Escape);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    private void Update()
+    {
+        if (PauseKey() && !GameManager.instance.inCutscene)
+        {
+            PauseGame();
             
         }
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
-        if (isPaused)
+        if (pauseReady)
         {
-            Time.timeScale = 0f;
-            canvas.enabled = true;
-            Paused.Invoke();
-        }
-        else
-        {
-            Time.timeScale = 1;
-            canvas.enabled = false;
-            phone.transform.position = originalPosition;
-            phone.transform.rotation = originalRotation;
-            pauseReady = true;
-            Resumed.Invoke();
+            pauseReady = false;
+            isPaused = !isPaused;
+            if (isPaused)
+            {
+                Time.timeScale = 0f;
+                canvas.enabled = true;
+                Paused.Invoke();
+            }
+            else
+            {
+                Time.timeScale = 1;
+                canvas.enabled = false;
+                phone.transform.position = originalPosition;
+                phone.transform.rotation = originalRotation;
+                pauseReady = true;
+                Resumed.Invoke();
 
+            }
         }
+       
     }
 }

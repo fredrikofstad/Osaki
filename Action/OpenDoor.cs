@@ -27,7 +27,7 @@ public class OpenDoor : Interact
             {
                 ShowText(false);
             }
-            if (Input.GetKeyDown(KeyCode.E) && canPerform) //ugly change later lol
+            if (IsInteracting())
             {
                 character.OpenDoor(this.transform.position, this.transform.rotation);
                 canPerform = false;

@@ -15,7 +15,7 @@ public class Sit : Interact
         {
             ShowText(false);
         }
-        if (Input.GetKeyDown(KeyCode.E) && canPerform) //ugly change later lol
+        if (IsInteracting())
         {
             if (!isSitting)
             {

@@ -17,6 +17,10 @@ abstract public class Interact : MonoBehaviour
         Setup();
         
     }
+    protected bool IsInteracting()
+    {
+        return (InputManager.Iteract() && canPerform); //ugly change later lol
+    }
     protected virtual void Setup()
     {
         //override this for start call

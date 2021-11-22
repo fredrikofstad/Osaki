@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public CinemachineVirtualCamera playerCam;
     public bl_AudioPlayer audioPlayer;
+    public Joystick joystick;
 
     //bools
+    public bool touchControls;
     public bool inCutscene;
     public bool music;
     //save
@@ -59,6 +61,14 @@ public class GameManager : MonoBehaviour
     public void PauseMusic()
     {
         audioPlayer.Pause();
+    }
+    public void Save()
+    {
+        SaveManager.Save(so);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 
 

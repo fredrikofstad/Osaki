@@ -35,7 +35,7 @@ public class PandaCollect : Interact
             {
                 ShowText(false);
             }
-            if (Input.GetKeyDown(KeyCode.E) && canPerform)
+            if (IsInteracting())
             {
                 CollectPanda();
                 canPerform = false;
