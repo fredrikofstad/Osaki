@@ -9,7 +9,7 @@ public class Sit : Interact
     {
         if (!isSitting && canPerform)
         {
-            ShowText();
+            ShowText(true,"Press [E] to sit");
         }
         else
         {

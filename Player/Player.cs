@@ -17,6 +17,7 @@ public class Player : AdvancedWalkerController
 
     //child references
     [SerializeField] private GameObject modelRoot;
+    public InteractText text;
     public Transform cameraControl; //used in PlayerCam
     public Transform cameraTarget; //used in PlayerCam
 

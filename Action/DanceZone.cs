@@ -17,7 +17,7 @@ public class DanceZone : Interact
     {
         if (!isDancing && canPerform)
         {
-            ShowText();
+            ShowText(true, "Press [E] to Dance");
         }
         else
         {

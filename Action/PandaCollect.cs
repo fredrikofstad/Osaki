@@ -11,7 +11,8 @@ public class PandaCollect : Interact
         pandaOsaki,
         pandaBar,
         pandaStarbucks,
-        pandaLife
+        pandaLife,
+        pandaStation
     }
     public PandaName panda;
     protected override void Setup()
@@ -29,7 +30,7 @@ public class PandaCollect : Interact
         {
             if (canPerform)
             {
-                ShowText();
+                ShowText(true,"!",5);
             }
             else
             {

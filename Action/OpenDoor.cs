@@ -21,7 +21,7 @@ public class OpenDoor : Interact
         {
             if (canPerform)
             {
-                ShowText();
+                ShowText(true, "Press [E] to Open");
             }
             else
             {
