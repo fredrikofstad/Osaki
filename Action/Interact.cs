@@ -19,7 +19,7 @@ abstract public class Interact : MonoBehaviour
     }
     protected bool IsInteracting()
     {
-        return (InputManager.Iteract() && canPerform); //ugly change later lol
+        return (InputManager.Interact() && canPerform); //ugly change later lol
     }
     protected virtual void Setup()
     {

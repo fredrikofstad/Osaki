@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PandaCollect : Interact
 {
+    AudioSource sound;
     public enum PandaName
     {
         pandaRoom,
@@ -15,10 +16,10 @@ public class PandaCollect : Interact
     public PandaName panda;
     protected override void Setup()
     {
+        sound = gameObject.GetComponent<AudioSource>();
         ShowText(false);
         if (GameManager.instance.so.pandas[(int)panda])
         {
-            Debug.Log("deleted panda");
             Destroy(gameObject);
         }
     }
@@ -26,7 +27,6 @@ public class PandaCollect : Interact
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log(canPerform);
             if (canPerform)
             {
                 ShowText();
@@ -52,8 +52,11 @@ public class PandaCollect : Interact
     {
         GameManager.instance.so.pandas[(int)panda] = true;
         GameManager.instance.so.pandaCount++;
-        string msg = "[" + GameManager.instance.so.pandaCount + "/5] Pandas Found!";
+        string msg = "[" + GameManager.instance.so.pandaCount + "/6] Pandas Found!";
         GameManager.instance.DisplayText(msg, 6f);
+        sound.Play();
+        PlayerPrefs.SetInt("unlocked", 2);
     }
+
 
 }

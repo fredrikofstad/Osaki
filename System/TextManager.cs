@@ -8,12 +8,14 @@ public class TextManager : MonoBehaviour
     private GameObject textContainer;
     [SerializeField]
     private GameObject textPrefab;
+    private AudioSource sound;
 
     private List<TextBox> textList = new List<TextBox>();
 
     private void Awake()
     {
         textContainer = gameObject;
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -25,6 +27,7 @@ public class TextManager : MonoBehaviour
     public void Show(string msg, float duration)
     {
         TextBox textBox = getTextBox();
+        sound.Play();
 
         textBox.txt.text = msg;
         textBox.duration = duration;

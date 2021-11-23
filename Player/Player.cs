@@ -102,15 +102,18 @@ public class Player : AdvancedWalkerController
     {
         changedCamera = true;
     }
-    public void Talk(GameObject target)
+    public void Talk(GameObject target = null)
     {
         Pause();
-        var adjusted = target.transform.position;
-        adjusted.y = transform.GetChild(0).transform.position.y;
-        transform.GetChild(0).transform.LookAt(adjusted);
-        var adjustedPlayer = transform.position;
-        adjustedPlayer.y = target.transform.position.y;
-        target.transform.LookAt(adjustedPlayer);
+        if(target != null)
+        {
+            var adjusted = target.transform.position;
+            adjusted.y = transform.GetChild(0).transform.position.y;
+            transform.GetChild(0).transform.LookAt(adjusted);
+            var adjustedPlayer = transform.position;
+            adjustedPlayer.y = target.transform.position.y;
+            target.transform.LookAt(adjustedPlayer);
+        } 
     }
     public void SitDown(Vector3 pos, Quaternion rot)
     {

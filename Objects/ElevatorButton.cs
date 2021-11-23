@@ -16,7 +16,7 @@ public class ElevatorButton : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (InputManager.Iteract())
+            if (InputManager.Interact())
             {
                 elevator.ButtonPressed(floor);
                 lightUp.enabled = true;

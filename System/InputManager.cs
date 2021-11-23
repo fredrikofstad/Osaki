@@ -3,7 +3,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public static class InputManager
 {
-	public static bool Iteract()
+	public static bool Interact()
 	{
         if (GameManager.instance.touchControls)
         {

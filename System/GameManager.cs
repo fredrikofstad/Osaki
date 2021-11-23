@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     //between scenes
     Vector3 playerLocation;
     Vector3 playerRotation;
+    public int playerClothes = 0;
 
     private void Start()
     {

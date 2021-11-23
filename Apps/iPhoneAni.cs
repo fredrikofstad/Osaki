@@ -15,7 +15,8 @@ public class iPhoneAni : MonoBehaviour
         Instagram,
         Notes,
         Music,
-        Settings
+        Settings,
+        Photos
     }
 
     private void Start()

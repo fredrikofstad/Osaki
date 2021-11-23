@@ -8,16 +8,13 @@ public class Clothes : MonoBehaviour
 
 
     public GameObject[] clothes;
-    public int clothesNumber = 0;
-
-    private bool music; //might not be needed, make gamemanager var?
 
     void Start()
     {
         GameManager.instance.pause.Paused += OnPause;
         GameManager.instance.pause.Resumed += OnResume;
         aniController = GetComponent<AniController>();
-        ChangeClothes(clothesNumber);
+        ChangeClothes(GameManager.instance.playerClothes);
         if (GameManager.instance.music)
         {
             headphones.SetActive(true);
@@ -39,8 +36,8 @@ public class Clothes : MonoBehaviour
             headphones.SetActive(false);
         }
     }
-
-    private void Update()
+    //for testing
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && headphones != null) //turn into bool for music
         {
@@ -55,10 +52,11 @@ public class Clothes : MonoBehaviour
             }
             music = !music;
         }
-    }
+    }*/
 
     public void ChangeClothes(int cloth)
     {
+        GameManager.instance.playerClothes = cloth;
         //making active before deactivating Model prefab
         if(phone != null)
             phone.SetActive(true);
@@ -84,6 +82,7 @@ public class Clothes : MonoBehaviour
         }
         phone.SetActive(false);
         aniController.GetReferences();
+        SetHeadphones(GameManager.instance.music);
 
     }
 
