@@ -17,8 +17,31 @@ public class Closet : MonoBehaviour
         player = GameManager.instance.player.GetComponent<Clothes>();
         talk.OnMadeChoice += OnMadeChoice;
         talk.OnEndTalk += OnEndTalk;
-        area.lineToStart = "both_begin";
-        area.lineToBreak = "both_end";
+        Unlocked();
+    }
+    private void Unlocked()
+    {
+        if(GameManager.instance.so.work && GameManager.instance.so.pandaCount >= GameManager.maxPanda)
+        {
+            area.lineToStart = "both_begin";
+            area.lineToBreak = "both_end";
+        } 
+        else if(GameManager.instance.so.work && GameManager.instance.so.pandaCount < GameManager.maxPanda)
+        {
+            area.lineToStart = "work_begin";
+            area.lineToBreak = "work_end";
+        }
+        else if (!GameManager.instance.so.work && GameManager.instance.so.pandaCount >= GameManager.maxPanda)
+        {
+            area.lineToStart = "panda_begin";
+            area.lineToBreak = "panda_end";
+        }
+        else
+        {
+            area.lineToStart = "start";
+            area.lineToBreak = "end";
+        }
+
     }
     private void OnMadeChoice(string questionID, int choiceID)
     {

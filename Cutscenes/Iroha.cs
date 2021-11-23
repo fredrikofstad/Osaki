@@ -29,20 +29,22 @@ public class Iroha : Cutscene
     }
     protected override void OnCutsceneEnd()
     {
-        //if statement for progression
-        StartCoroutine(TaskComplete());
+        if(!GameManager.instance.so.friends.iroha)
+            StartCoroutine(TaskComplete());
     }
 
     IEnumerator TaskComplete()
     {
-
+        GameManager.instance.so.cafe = true;
+        GameManager.instance.so.friends.iroha = true;
+        GameManager.instance.so.friendCount++;
         yield return new WaitForSeconds(1f);
 
-        GameManager.instance.DisplayText("Go to cafe to study: Task Complete!", 6f);
+        GameManager.instance.DisplayText("Study at cafe: Task Complete!", 6f);
 
         yield return new WaitForSeconds(6f);
 
-        GameManager.instance.DisplayText("Meet my Friends: 5/7", 6f);
+        GameManager.instance.DisplayText($"Meet my Friends: {GameManager.instance.so.friendCount}/{GameManager.maxFriends}", 6f);
     }
 
     private void OnDisable()

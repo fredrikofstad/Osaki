@@ -25,12 +25,15 @@ public class Akane : Cutscene
     }
     protected override void OnCutsceneEnd()
     {
-        //if statement for progression
-        StartCoroutine(TaskComplete());
+        if (!GameManager.instance.so.friends.akane)
+            StartCoroutine(TaskComplete());
     }
 
     IEnumerator TaskComplete()
     {
+        GameManager.instance.so.exercise = true;
+        GameManager.instance.so.friends.akane = true;
+        GameManager.instance.so.friendCount++;
 
         yield return new WaitForSeconds(1f);
 
@@ -38,7 +41,7 @@ public class Akane : Cutscene
 
         yield return new WaitForSeconds(6f);
 
-        GameManager.instance.DisplayText("Meet my Friends: 2/7", 6f);
+        GameManager.instance.DisplayText($"Meet my Friends: {GameManager.instance.so.friendCount}/{GameManager.maxFriends}", 6f);
     }
 
     private void OnDisable()

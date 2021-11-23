@@ -53,10 +53,8 @@ public class PandaCollect : Interact
     {
         GameManager.instance.so.pandas[(int)panda] = true;
         GameManager.instance.so.pandaCount++;
-        string msg = "[" + GameManager.instance.so.pandaCount + "/6] Pandas Found!";
-        GameManager.instance.DisplayText(msg, 6f);
+        GameManager.instance.DisplayText($"[{GameManager.instance.so.pandaCount}/{GameManager.maxPanda}] Pandas Found!", 6f);
         sound.Play();
-        PlayerPrefs.SetInt("unlocked", 2);
     }
 
 

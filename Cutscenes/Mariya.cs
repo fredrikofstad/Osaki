@@ -29,13 +29,15 @@ public class Mariya : Cutscene
     }
     protected override void OnCutsceneEnd()
     {
-        //if statement for progression
-        Invoke("TaskComplete", 1f);
+        if (!GameManager.instance.so.friends.mariya)
+            Invoke("TaskComplete", 1f);
     }
 
     private void TaskComplete()
     {
-        GameManager.instance.DisplayText("Meet my Friends: 1/7", 6f);
+        GameManager.instance.so.friends.mariya = true;
+        GameManager.instance.so.friendCount++;
+        GameManager.instance.DisplayText($"Meet my Friends: {GameManager.instance.so.friendCount}/{GameManager.maxFriends}", 6f);
     }
 
     private void OnDisable()

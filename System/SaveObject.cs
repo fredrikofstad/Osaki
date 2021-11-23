@@ -14,6 +14,12 @@ public class SaveObject
     public bool introCutscene;
     public Friends friends;
     public bool[] pandas = new bool[6];
-    public int pandaCount;
+    
     public bool exercise;
+    public bool cafe;
+    public bool work;
+    public bool groceries;
+
+    public int pandaCount = 0;
+    public int friendCount = 0;
 }

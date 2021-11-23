@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public bool music;
     //save
     public SaveObject so;
+    public const int maxPanda = 6;
+    public const int maxFriends = 5;
     //between scenes
     Vector3 playerLocation;
     Vector3 playerRotation;

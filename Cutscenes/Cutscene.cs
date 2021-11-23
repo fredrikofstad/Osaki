@@ -19,6 +19,7 @@ public class Cutscene : MonoBehaviour
     protected void PlayCutscene()
     {
         player.Disable();
+        GameManager.instance.touchGui.SetActive(false);
         hasRun = true;
         director.Play();
         GameManager.instance.inCutscene = true;
@@ -31,6 +32,7 @@ public class Cutscene : MonoBehaviour
             GameManager.instance.inCutscene = false;
             OnCutsceneEnd();
             player.Enable();
+            GameManager.instance.touchGui.SetActive(GameManager.instance.touchControls);
         }
     }
     protected virtual void OnCutsceneEnd()
