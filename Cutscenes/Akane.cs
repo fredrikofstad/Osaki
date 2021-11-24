@@ -4,7 +4,7 @@ using UnityEngine;
 public class Akane : Cutscene
 {
     private RPGTalk rpgtalk;
-    private int choice = 0;
+    private int choice = 5;
     protected override void Setup()
     {
         rpgtalk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
@@ -21,6 +21,7 @@ public class Akane : Cutscene
         if(choice == 0)
         {
             PlayCutscene();
+            choice = 5;
         }
     }
     protected override void OnCutsceneEnd()

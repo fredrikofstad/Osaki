@@ -12,11 +12,18 @@ public class Elevator : MonoBehaviour
 
     [SerializeField] private int currentFloor = 1;
     [SerializeField] private bool inProgress = false;
+
+    private AudioSource sound;
+
     public float duration = 10f;
     public float waitDuration = 2f;
     private float[] destination = {1, 0.14f, 1, 1, 1, 1, 1, 21.75f, 1};
     private GameObject passenger;
 
+    private void Start()
+    {
+        sound = gameObject.GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && !inProgress)
@@ -71,6 +78,7 @@ public class Elevator : MonoBehaviour
     }
     public void Arrived()
     {
+        sound.Play();
         OpenDoors.Invoke();
         inProgress = false;
     }

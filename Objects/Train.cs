@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    private bool isOpen;
     private float originalZ;
     private bool playerOnbaord;
 
-    [SerializeField]
-    private WorkCutscene workcutscene;
+    //sound
+    [SerializeField] private AudioSource loop;
+    [SerializeField] private AudioSource arrive;
+
+    [SerializeField]private WorkCutscene workcutscene;
 
     public delegate void TrainHandler();
     public event TrainHandler ReadyToBoard;
@@ -23,6 +25,7 @@ public class Train : MonoBehaviour
     private void Bye()
     {
         LeanTween.moveZ(gameObject, -20, 5f).setEase(LeanTweenType.easeInQuad);
+        loop.Play();
     }
 
     private void Arrive()
@@ -47,6 +50,8 @@ public class Train : MonoBehaviour
     {
         //japanese trains always on time man
         ReadyToBoard.Invoke();
+        loop.Stop();
+        arrive.Play();
 
         yield return new WaitForSeconds(15);
 
@@ -63,6 +68,7 @@ public class Train : MonoBehaviour
         {
             Time.timeScale = 0;
             workcutscene.PlayCS();
+            loop.Stop();
         }
 
         yield return new WaitForSeconds(5);

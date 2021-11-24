@@ -4,16 +4,12 @@ using UnityEngine;
 
 abstract public class Interact : MonoBehaviour
 {
-    protected Transform textMeshTransform;
-    protected MeshRenderer textRender;
     protected Player character;
     protected InteractText text;
     protected bool showText = true;
     protected bool canPerform = true;
     void Start()
     {
-        textMeshTransform = GetComponentInChildren<RectTransform>();
-        textRender = GetComponentInChildren<MeshRenderer>();
         character = GameManager.instance.playerScript;
         text = character.text;
         Setup();

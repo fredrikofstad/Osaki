@@ -5,7 +5,7 @@ public class IncludeGUI : MonoBehaviour
 {
     private void Awake()
     {
-        if (!SceneManager.GetSceneByName("GUI").isLoaded)
+        if (!GameManager.instance.so.introCutscene)
             SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
     }
 

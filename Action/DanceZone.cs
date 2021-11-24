@@ -4,15 +4,6 @@ public class DanceZone : Interact
 {
     private bool isDancing = false;
 
-    protected override void Setup()
-    {
-        textMeshTransform = GetComponentInChildren<RectTransform>();
-        textRender = GetComponentInChildren<MeshRenderer>();
-        character = GameManager.instance.playerScript;
-    }
-
-
-
     private void OnTriggerStay()
     {
         if (!isDancing && canPerform)
