@@ -6,6 +6,7 @@ public class Basket : MonoBehaviour
 {
 
     public List<GameObject> food;
+    public GameObject bag;
 
     private void Start()
     {
@@ -19,6 +20,13 @@ public class Basket : MonoBehaviour
         food[index].SetActive(true);
         Debug.Log(index);
 
+    }
+    public void Packup()
+    {
+        foreach (GameObject item in food)
+            item.SetActive(false);
+        bag.SetActive(true);
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
 }

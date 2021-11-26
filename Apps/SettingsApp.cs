@@ -46,7 +46,7 @@ public class SettingsApp : MonoBehaviour
     private void Start()
     {
         volumeSlider.value = PlayerPrefs.GetFloat("MVolume", 1f);
-        audioMixer.SetFloat("volume", PlayerPrefs.GetFloat("MVolume"));
+        audioMixer.SetFloat("volume", Mathf.Log10(PlayerPrefs.GetFloat("MVolume") * 20));
         qualityDropdown.value = PlayerPrefs.GetInt(prefName, 2);
 
         resolutions = Screen.resolutions;
@@ -74,7 +74,7 @@ public class SettingsApp : MonoBehaviour
     public void SetVolume(float volume)
     {
         PlayerPrefs.SetFloat("MVolume", volume);
-        audioMixer.SetFloat("volume", Mathf.Log10(PlayerPrefs.GetFloat("MVolume") * 20));
+        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
     }
 
     public void SetQuality(int qualityIndex)

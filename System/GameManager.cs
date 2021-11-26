@@ -4,6 +4,11 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    //save
+    public SaveObject so;
+    public const int maxPanda = 6;
+    public const int maxFriends = 5;
+
     public static GameManager instance;
     private void Awake()
     {
@@ -31,10 +36,7 @@ public class GameManager : MonoBehaviour
     public bool touchControls;
     public bool inCutscene;
     public bool music;
-    //save
-    public SaveObject so;
-    public const int maxPanda = 6;
-    public const int maxFriends = 5;
+    
     //between scenes
     Vector3 playerLocation;
     Vector3 playerRotation;
