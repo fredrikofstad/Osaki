@@ -9,6 +9,7 @@ public class LifeMusic : MonoBehaviour
     public AudioClip track2;
     void Start()
     {
+        //GameManager.instance.PauseMusic();
         source = GetComponent<AudioSource>();
         StartCoroutine(PlayNext());
     }

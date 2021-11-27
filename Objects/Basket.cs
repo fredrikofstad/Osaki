@@ -10,7 +10,9 @@ public class Basket : MonoBehaviour
 
     private void Start()
     {
-        foreach(GameObject thing in food)
+        GameManager.instance.pause.Paused += OnPause;
+        GameManager.instance.pause.Resumed += OnResume;
+        foreach (GameObject thing in food)
         {
             thing.SetActive(false);
         }
@@ -21,12 +23,25 @@ public class Basket : MonoBehaviour
         Debug.Log(index);
 
     }
-    public void Packup()
+    public void Bag()
     {
         foreach (GameObject item in food)
             item.SetActive(false);
-        bag.SetActive(true);
         GetComponent<MeshRenderer>().enabled = false;
+        bag.SetActive(true);
+    }
+    private void OnPause()
+    {
+        gameObject.SetActive(false);
+    }
+    private void OnResume()
+    {
+        gameObject.SetActive(true);
+    }
+    private void OnDestroy()
+    {
+        GameManager.instance.pause.Paused -= OnPause;
+        GameManager.instance.pause.Resumed -= OnResume;
     }
 
 }
