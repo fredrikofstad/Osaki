@@ -16,7 +16,8 @@ public class iPhoneAni : MonoBehaviour
         Notes,
         Music,
         Settings,
-        Photos
+        Photos,
+        Twitter
     }
 
     private void Start()

@@ -18,10 +18,10 @@ public class LifeMusic : MonoBehaviour
     {
         source.clip = track1;
         source.Play();
-        yield return new WaitForSeconds(source.clip.length);
+        yield return Unscaled.WaitForRealSeconds(source.clip.length);
         source.clip = track2;
         source.Play();
-        yield return new WaitForSeconds(source.clip.length);
+        yield return Unscaled.WaitForRealSeconds(source.clip.length);
         StartCoroutine(PlayNext());
     }
 }
