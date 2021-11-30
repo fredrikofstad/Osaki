@@ -11,13 +11,14 @@ public class WorkCutscene : Cutscene
     protected override void OnCutsceneEnd()
     {
         Time.timeScale = 1;
-        //if statement for progression
-        StartCoroutine(TaskComplete());
+        if (!GameManager.instance.so.work)
+            StartCoroutine(TaskComplete());
     }
 
     IEnumerator TaskComplete()
     {
         //only first time
+        GameManager.instance.so.work = true;
         yield return new WaitForSeconds(1f);
 
         GameManager.instance.DisplayText("Go to work: Task Complete!", 6f);

@@ -4,11 +4,6 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    //save
-    public SaveObject so;
-    public const int maxPanda = 6;
-    public const int maxFriends = 5;
-
     public static GameManager instance;
     private void Awake()
     {
@@ -20,6 +15,11 @@ public class GameManager : MonoBehaviour
         instance = this;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    //save
+    public SaveObject so;
+    public const int maxPanda = 6;
+    public const int maxFriends = 5;
+
     //references
     public PauseManager pause;
     public TextManager textManager;
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bl_AudioPlayer audioPlayer;
     public Joystick joystick;
     public GameObject touchGui;
+    public Transition transition;
 
     //bools
     public bool touchControls;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
         if (playerRotation != Vector3.zero) player.transform.rotation = Quaternion.Euler(playerRotation);
         playerLocation = Vector3.zero;
         playerRotation = Vector3.zero;
+        transition.FadeOut();
     }
     public void GiveLocation(Vector3 newLocation, Vector3 newRotation)
     {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,7 @@ public class OpenDoor : Interact
     public string destination;
     public Vector3 newLocation;
     public Vector3 newRotation;
+    public string msg = "";
     private Animator anim;
 
     protected override void Setup()
@@ -33,7 +35,7 @@ public class OpenDoor : Interact
                 canPerform = false;
                 ShowText(false);
                 anim.SetTrigger("onOpen");
-                Invoke("NewScene", 3f);
+                StartCoroutine(NewScene());
             }
         }
         
@@ -43,10 +45,13 @@ public class OpenDoor : Interact
         ShowText(false);
     }
 
-    private void NewScene()
+    IEnumerator NewScene()
     {
+        yield return new WaitForSeconds(2.5f);
+        GameManager.instance.transition.FadeIn(msg);
+        yield return new WaitForSeconds(0.5f);
         GameManager.instance.GiveLocation(newLocation, newRotation);
         SceneManager.LoadScene(sceneName: destination);
     }
-    
+
 }

@@ -1,6 +1,9 @@
 [System.Serializable]
 public class SaveObject
 {
+
+    public string playerName = "Player" ;
+
     [System.Serializable]
     public struct Friends
     {
