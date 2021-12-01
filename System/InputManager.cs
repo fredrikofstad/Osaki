@@ -7,7 +7,7 @@ public static class InputManager
 	{
         if (GameManager.instance.touchControls)
         {
-            return CrossPlatformInputManager.GetButton("Interact");
+            return CrossPlatformInputManager.GetButtonUp("Interact");
         }
         else
         {

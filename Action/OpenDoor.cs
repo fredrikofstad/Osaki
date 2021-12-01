@@ -47,9 +47,9 @@ public class OpenDoor : Interact
 
     IEnumerator NewScene()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.4f);
         GameManager.instance.transition.FadeIn(msg);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         GameManager.instance.GiveLocation(newLocation, newRotation);
         SceneManager.LoadScene(sceneName: destination);
     }
