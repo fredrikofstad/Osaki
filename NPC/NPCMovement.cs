@@ -23,28 +23,27 @@ public class NPCMovement : MonoBehaviour
     }
     void Update()
     {
-        if (!standing) 
-        { 
-            if(transform.position != destination)
-            {
-                if (anim != null) 
-                    anim.SetBool("isStanding", false);
-                Vector3 destinationDirection = destination - transform.position;
-                destinationDirection.y = 0;
-                float destinationDistance = destinationDirection.magnitude;
-            
-                if(destinationDistance >= stopDistance )
-                {
-                 reachedDestination = false;
+        if (standing)
+            return;
+        if (transform.position == destination)
+        {
+            reachedDestination = true;
+        }
+        else
+        {
+            if (anim != null)
+                anim.SetBool("isStanding", false);
+            Vector3 destinationDirection = destination - transform.position;
+            destinationDirection.y = 0;
+            float destinationDistance = destinationDirection.magnitude;
 
-                    Quaternion targetRotation = Quaternion.LookRotation(destinationDirection);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                    transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    reachedDestination = true;
-                }
+            if (destinationDistance >= stopDistance)
+            {
+                reachedDestination = false;
+
+                Quaternion targetRotation = Quaternion.LookRotation(destinationDirection);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
             }
             else
             {
