@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class Akane : Cutscene
 {
-    private RPGTalk rpgtalk;
+    private RPGTalk talk;
+    private RPGTalkArea area;
     private int choice = 5;
     protected override void Setup()
     {
-        rpgtalk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
-        rpgtalk.OnMadeChoice += OnMadeChoice;
-        rpgtalk.OnEndTalk += OnEndTalk;
+        talk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
+        area = GetComponent<RPGTalkArea>();
+        talk.OnMadeChoice += OnMadeChoice;
+        talk.OnEndTalk += OnEndTalk;
     }
 
     private void OnMadeChoice(string questionID, int choiceID)
@@ -22,6 +24,19 @@ public class Akane : Cutscene
         {
             PlayCutscene();
             choice = 5;
+        }
+    }
+    public void UpdateBeliefs()
+    {
+        if (GameManager.instance.so.friends.akane)
+        {
+            area.lineToStart = "finish_start";
+            area.lineToBreak = "finish_end";
+        }
+        else
+        {
+            area.lineToStart = "start";
+            area.lineToBreak = "end";
         }
     }
     protected override void OnCutsceneEnd()
@@ -47,7 +62,7 @@ public class Akane : Cutscene
 
     private void OnDisable()
     {
-        rpgtalk.OnMadeChoice -= OnMadeChoice;
-        rpgtalk.OnEndTalk -= OnEndTalk;
+        talk.OnMadeChoice -= OnMadeChoice;
+        talk.OnEndTalk -= OnEndTalk;
     }
 }

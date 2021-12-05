@@ -22,6 +22,7 @@ public class SaveObject
     public bool cafe;
     public bool work;
     public bool groceries;
+    public bool paint;
 
     public int pandaCount = 0;
     public int friendCount = 0;

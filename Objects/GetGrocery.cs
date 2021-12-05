@@ -15,7 +15,6 @@ public class GetGrocery : MonoBehaviour
     public Food food;
 
     private RPGTalk talk;
-    private RPGTalkArea talk2;
     private Groceries player;
     public string foodItem;
     bool thisGrocery;
