@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using CMF;
 
@@ -39,6 +38,10 @@ public class Player : AdvancedWalkerController
             movementSpeed = runSpeed;
         }
         grounded = IsGrounded();
+
+        //handle out of bounds
+        if (transform.position.y < -50f)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 

@@ -6,14 +6,22 @@ public class PandaMan : MonoBehaviour
     private AudioSource sound;
     private RPGTalk talk;
     private bool pandaTalk;
+    [SerializeField] private GameObject dance;
     void Start()
     {
         talk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
         sound = gameObject.GetComponent<AudioSource>();
         talk.OnEndTalk += OnEndTalk;
+        dance.SetActive(false);
 
         if (GameManager.instance.so.pandaCount < 5)
-            gameObject.SetActive(false);       
+            gameObject.SetActive(false);
+        if (GameManager.instance.playerClothes == 2)
+        {
+            GetComponent<BoxCollider>().enabled = false;
+            dance.SetActive(true);
+        }
+            
     }
 
     private void OnTriggerEnter(Collider other)
