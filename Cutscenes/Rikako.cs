@@ -1,25 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Kanari : MonoBehaviour
+public class Rikako : MonoBehaviour
 {
     private RPGTalkArea area;
     private RPGTalk talk;
-    private bool kanari;
+    private int choice = 5;
 
     void Start()
     {
         area = GetComponent<RPGTalkArea>();
         talk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
         talk.OnEndTalk += OnEndTalk;
+        talk.OnMadeChoice += OnMadeChoice;
     }
-    public void UpdateBeliefs() 
+    public void UpdateBeliefs()
     {
-        if (GameManager.instance.so.paint)
+        if (GameManager.instance.so.friends.rikako)
         {
-            area.lineToStart = "paint_begin";
-            area.lineToBreak = "paint_end";
+            area.lineToStart = "finish_begin";
+            area.lineToBreak = "finish_end";
         }
         else
         {
@@ -27,24 +27,22 @@ public class Kanari : MonoBehaviour
             area.lineToBreak = "end";
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnMadeChoice(string questionID, int choiceID)
     {
-        if (other.gameObject.tag == "Player")
-            kanari = true;
+        choice = choiceID;
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-            kanari = false;
-    }
+
     private void OnEndTalk()
     {
-        if (kanari && !GameManager.instance.so.friends.kanari && GameManager.instance.so.paint)
+        if (!GameManager.instance.so.friends.rikako && choice == 0)
             StartCoroutine(TaskComplete());
+        choice = 5;
+            
     }
     IEnumerator TaskComplete()
     {
-        GameManager.instance.so.friends.kanari = true;
+        GameManager.instance.so.friends.rikako = true;
         GameManager.instance.so.friendCount++;
 
         yield return new WaitForSeconds(1f);
@@ -54,5 +52,6 @@ public class Kanari : MonoBehaviour
     private void OnDisable()
     {
         talk.OnEndTalk -= OnEndTalk;
+        talk.OnMadeChoice += OnMadeChoice;
     }
 }

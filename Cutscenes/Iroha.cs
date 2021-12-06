@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class Iroha : Cutscene
 {
-    private RPGTalk rpgtalk;
+    private RPGTalk talk;
+    private RPGTalkArea area;
     private int choice = 0;
     private string question;
     protected override void Setup()
     {
-        rpgtalk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
-        rpgtalk.OnMadeChoice += OnMadeChoice;
-        rpgtalk.OnEndTalk += OnEndTalk;
+        talk = GameObject.FindWithTag("Talk").GetComponent<RPGTalk>();
+        area = GetComponent<RPGTalkArea>();
+        talk.OnMadeChoice += OnMadeChoice;
+        talk.OnEndTalk += OnEndTalk;
     }
 
     private void OnMadeChoice(string questionID, int choiceID)
@@ -27,6 +29,21 @@ public class Iroha : Cutscene
         }
         question = null;
     }
+
+    public void UpdateBeliefs()
+    {
+        if (GameManager.instance.so.friends.iroha)
+        {
+            area.lineToStart = "finish_start";
+            area.lineToBreak = "finish_end";
+        }
+        else
+        {
+            area.lineToStart = "start";
+            area.lineToBreak = "end";
+        }
+    }
+
     protected override void OnCutsceneEnd()
     {
         if(!GameManager.instance.so.friends.iroha)
@@ -49,7 +66,7 @@ public class Iroha : Cutscene
 
     private void OnDisable()
     {
-        rpgtalk.OnMadeChoice -= OnMadeChoice;
-        rpgtalk.OnEndTalk -= OnEndTalk;
+        talk.OnMadeChoice -= OnMadeChoice;
+        talk.OnEndTalk -= OnEndTalk;
     }
 }
