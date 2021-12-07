@@ -3,12 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    AudioSource music;
     private void Start()
     {
         if (GameManager.instance.so.introCutscene)
         {
             gameObject.SetActive(false);
+            return;
         }
+        music = GetComponent<AudioSource>();
+        music.Play();
+
     }
     public void NewGame()
     {
