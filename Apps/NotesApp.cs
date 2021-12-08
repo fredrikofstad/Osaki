@@ -9,8 +9,17 @@ public class NotesApp : MonoBehaviour
     //consider enums
     [SerializeField] private GameObject[] tasks;
     [SerializeField] private GameObject[] groceries;
+    private bool initialized;
+
+    private void Start()
+    {
+        initialized = true;
+        so = GameManager.instance.so;
+    }
     private void OnEnable()
     {
+        if (!initialized)
+            return;
         so = GameManager.instance.so;
         Tasks();
     }
