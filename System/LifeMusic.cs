@@ -4,24 +4,20 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class LifeMusic : MonoBehaviour
 {
-    private AudioSource source;
-    public AudioClip track1;
-    public AudioClip track2;
+    AudioSource[] sources;
     void Start()
     {
         GameManager.instance.PauseMusic();
-        source = GetComponent<AudioSource>();
-        source.clip = track1;
-        source.Play();
+        sources = GetComponents<AudioSource>();
+        sources[0].Play();
         StartCoroutine(PlayNext());
     }
 
     IEnumerator PlayNext()
     {
-        yield return Unscaled.WaitForRealSeconds(source.clip.length);
-        source.clip = track2;
-        source.Play();
-        yield return Unscaled.WaitForRealSeconds(source.clip.length);
+        yield return Unscaled.WaitForRealSeconds(sources[0].clip.length);
+        sources[1].Play();
+        yield return Unscaled.WaitForRealSeconds(sources[1].clip.length);
         StartCoroutine(PlayNext());
     }
 }

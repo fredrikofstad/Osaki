@@ -44,7 +44,6 @@ public class GetGrocery : MonoBehaviour
     {
         if (choiceID == 0 && thisGrocery)
         {
-            Debug.Log("now!");
             player.ActivateFood((int)food);
             Destroy(gameObject);
         }

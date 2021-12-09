@@ -46,6 +46,7 @@ public class Fredrik : Cutscene
         {
             director.gameObject.SetActive(true);
             PlayCutscene();
+            GameManager.instance.PauseMusic();
             presents.SetActive(true);
             laptop.SetActive(false);
             choice = 5;
