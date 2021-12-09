@@ -7,6 +7,8 @@ public class Basket : MonoBehaviour
 
     public List<GameObject> food;
     public GameObject bag;
+    public int foodCount;
+    public bool hasBag;
 
     private void Start()
     {
@@ -21,6 +23,8 @@ public class Basket : MonoBehaviour
     {
         food[index].SetActive(true);
         Debug.Log(index);
+        foodCount++;
+        print(foodCount);
 
     }
     public void Bag()
@@ -29,6 +33,7 @@ public class Basket : MonoBehaviour
             item.SetActive(false);
         GetComponent<MeshRenderer>().enabled = false;
         bag.SetActive(true);
+        hasBag = true;
     }
     private void OnPause()
     {

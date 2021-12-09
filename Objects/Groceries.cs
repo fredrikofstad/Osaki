@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Groceries : MonoBehaviour
 {
-    [SerializeField]
-    private Basket basket;
+    public Basket basket;
 
     private void Start()
     {
@@ -19,6 +18,14 @@ public class Groceries : MonoBehaviour
     private void FindBasket()
     {
         basket = GetComponentInChildren<Basket>();
+    }
+    public int FoodCount()
+    {
+        return basket.foodCount;
+    }
+    public bool hasBag()
+    {
+        return basket.hasBag;
     }
 
 }
