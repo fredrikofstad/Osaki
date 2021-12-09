@@ -9,6 +9,7 @@ public class Closet : MonoBehaviour
     private Clothes player;
     private int choice = 0;
     private string question;
+    private bool closet;
 
     void Start()
     {
@@ -18,6 +19,16 @@ public class Closet : MonoBehaviour
         talk.OnMadeChoice += OnMadeChoice;
         talk.OnEndTalk += OnEndTalk;
         Unlocked();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            closet = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            closet = false;
     }
     private void Unlocked()
     {
@@ -50,6 +61,8 @@ public class Closet : MonoBehaviour
     }
     private void OnEndTalk()
     {
+        if (!closet)
+            return;
         if (choice == 1)
         {
             if (question == "clothes2")
@@ -68,7 +81,7 @@ public class Closet : MonoBehaviour
 
         //reset
         choice = 0;
-        question = null;
+        question = "";
     }
     private void OnDisable()
     {

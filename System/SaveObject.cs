@@ -26,4 +26,6 @@ public class SaveObject
 
     public int pandaCount = 0;
     public int friendCount = 0;
+
+    public bool ending;
 }

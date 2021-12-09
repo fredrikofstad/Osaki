@@ -30,7 +30,7 @@ public class InstagramApp : MonoBehaviour
         if (!initialized)
             return;
         scroll.verticalNormalizedPosition = 1f;
-
+        so = GameManager.instance.so;
         Unlock();
         Post();
         ChangeOrder();

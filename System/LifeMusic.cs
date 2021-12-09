@@ -11,13 +11,13 @@ public class LifeMusic : MonoBehaviour
     {
         GameManager.instance.PauseMusic();
         source = GetComponent<AudioSource>();
+        source.clip = track1;
+        source.Play();
         StartCoroutine(PlayNext());
     }
 
     IEnumerator PlayNext()
     {
-        source.clip = track1;
-        source.Play();
         yield return Unscaled.WaitForRealSeconds(source.clip.length);
         source.clip = track2;
         source.Play();

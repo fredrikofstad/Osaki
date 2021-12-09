@@ -32,7 +32,7 @@ public class TwitterApp : MonoBehaviour
         if (!initialized)
             return;
         scroll.verticalNormalizedPosition = 1f;
-
+        so = GameManager.instance.so;
         Unlock();
 
         for (int i = 0; i < posts.Length; i++)

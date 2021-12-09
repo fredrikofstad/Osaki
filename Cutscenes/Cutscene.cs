@@ -3,7 +3,7 @@ using UnityEngine.Playables;
 
 public class Cutscene : MonoBehaviour
 {
-    private PlayableDirector director;
+    protected PlayableDirector director;
     private bool hasRun;
     private Player player;
     protected void Start()
